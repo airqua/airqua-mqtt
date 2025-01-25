@@ -1,0 +1,29 @@
+{
+  "name": "airqua-mqtt",
+  "version": "1.0.0",
+  "description": "AirQua MQTT Server",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "npx tsc && node -r dotenv/config dist/index.js",
+    "generate-types": "node generate-types.js"
+  },
+  "author": {
+    "name": "Denis Zhmurenko",
+    "email": "hi@dyzoon.dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airqua/airqua-mqtt.git"
+  },
+  "dependencies": {
+    "aedes": "^0.51.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.10",
+    "dotenv": "^16.4.7",
+    "swagger-typescript-api": "^13.0.23",
+    "typescript": "^5.7.3"
+  }
+}

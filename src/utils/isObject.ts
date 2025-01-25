@@ -1,0 +1,1 @@
+export const isObject = (test: unknown): test is Record<any, any> => test !== null && typeof test === 'object';
