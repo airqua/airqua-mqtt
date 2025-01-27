@@ -31,16 +31,18 @@ aedes.authorizePublish = async (client, packet, callback) => {
         return callback(new Error('No token on file for publishing client'));
     }
 
+    const payload: Record<string, number> = JSON.parse(
+        (Buffer.isBuffer(packet.payload) ?
+            packet.payload :
+            Buffer.from(packet.payload, 'base64')
+        ).toString()
+    );
+
     try {
         await postReading(
             packet.topic,
             clients[client.id],
-            JSON.parse(
-                (Buffer.isBuffer(packet.payload) ?
-                    packet.payload :
-                    Buffer.from(packet.payload, 'base64')
-                ).toString()
-            )
+            Object.entries(payload).map(([metric_id, value]) => ({ metric_id, value }))
         );
         callback(null);
         console.log('Successful reading post', client.id);
