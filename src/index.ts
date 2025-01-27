@@ -16,7 +16,7 @@ aedes.authenticate = (client, username, password, callback) => {
         return callback(new AuthenticateError(4), null);
     }
     callback(null, true);
-    clients[client.id] = Buffer.from(password).toString('base64');
+    clients[client.id] = password.toString();
     console.log('Successful auth', client.id);
 }
 
