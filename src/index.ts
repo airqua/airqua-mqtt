@@ -1,16 +1,12 @@
 import Aedes from "aedes";
-import {createServer} from "node:tls";
+import {createServer} from "node:net";
 import {env} from "./env";
-import fs from "node:fs";
 import {MQTT_USERNAME} from "./constants/constants";
 import {AuthenticateError} from "./errors/AuthenticateError";
 import {postReading} from "./modules/requests/postReading";
 
 const aedes = new Aedes();
-const server = createServer({
-    cert: fs.readFileSync(env.SSL_CERT_PATH),
-    key: fs.readFileSync(env.SSL_KEY_PATH),
-}, aedes.handle);
+const server = createServer(aedes.handle);
 
 const clients: Record<string, string> = {};
 
