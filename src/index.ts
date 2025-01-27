@@ -38,8 +38,8 @@ aedes.authorizePublish = async (client, packet, callback) => {
             JSON.parse(
                 (Buffer.isBuffer(packet.payload) ?
                     packet.payload :
-                    Buffer.from(packet.payload)
-                ).toString('base64')
+                    Buffer.from(packet.payload, 'base64')
+                ).toString()
             )
         );
         callback(null);
